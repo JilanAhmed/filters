@@ -1,0 +1,28 @@
+
+
+
+
+
+ originalImage = imread("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-7OrBX56e75IjKcP5pziwjazkT8F290CSvxqSXirp7PFQjw1KuQjWuGTtEhBZ2ngCJjY&usqp=CAU");  
+ gray_image = rgb2gray(originalImage);  
+ subplot(1, 2, 1),
+
+ imshow(gray_image);
+ title("Original image");
+ 
+ [rows,cols]=size(gray_image);
+ counts=zeros(1,256);
+ for i=1:rows
+  for j=1:cols
+     grayLevel=gray_image(i,j);
+     counts(grayLevel+1)=counts(grayLevel+1)+1;
+ end
+ end
+
+ subplot(1, 2, 2),
+ grayLevels = 0 : 255;
+ bar(grayLevels, counts, 'BarWidth', 1, 'FaceColor', 'b');
+ xlabel('Gray Level', 'FontSize', 20);
+ ylabel('Pixel Count', 'FontSize', 20);
+ title('Histogram', 'FontSize', 20);
+ grid on;

@@ -1,0 +1,23 @@
+
+
+
+
+
+gray_image = imread("https://www.researchgate.net/profile/Jayanthi-Sivaswamy-2/publication/224373547/figure/fig2/AS:302679118106633@1449175734017/Grey-scale-image-corrupted-with-salt-and-pepper-noise-which-is-used-for-training-the-HNN_Q320.jpg");    
+subplot(1, 2, 1),
+% displaying the image
+imshow(gray_image);
+title("Original image");
+
+[rows,cols]=size(gray_image);
+out=gray_image;
+for i=2:rows-1
+ for j=2:cols-1
+     temp = [gray_image(i-1, j-1) gray_image(i-1, j) gray_image(i-1, j + 1) gray_image(i, j-1) gray_image(i, j) gray_image(i, j + 1) gray_image(i + 1, j-1) gray_image(i + 1, j) gray_image(i + 1, j + 1)];
+     temp = sort(temp);
+     out(i, j)= temp(5);
+end
+end
+subplot(1, 2, 2),
+imshow(out);
+title("Median Image");
